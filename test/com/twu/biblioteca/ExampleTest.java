@@ -8,7 +8,7 @@ import static org.junit.Assert.assertSame;
 public class ExampleTest {
 
     @Test
-    public void test() {
+    public void welcomeMessageTest() {
 
         String msg = "Hello user welcome to Biblioteca";
         assertSame(msg,new LibraryManagementSystem().getWelcomeMessage());
@@ -16,6 +16,12 @@ public class ExampleTest {
 
     @Test
     public void test2() throws Exception {
+
+    }
+
+    @Test
+    public void test3() throws Exception {
+
 
     }
 }
