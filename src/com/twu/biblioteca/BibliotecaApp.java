@@ -15,6 +15,11 @@ public class BibliotecaApp {
             case 2:
                 LibraryManagementSystem library = new LibraryManagementSystem();
                 library.checkOut(bookName);
+                break;
+            case 3:
+                LibraryManagementSystem libraryCheckOut = new LibraryManagementSystem();
+                libraryCheckOut.checkOut(bookName);
+                break;
         }
     }
 }

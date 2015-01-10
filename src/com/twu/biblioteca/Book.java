@@ -15,25 +15,20 @@ class Book {
     }
 
     public Book(Book b) {
-        this.name = b.getName();
-        this.author = b.getAuthor();
-        this.yearPublished = b.getYearPublished();
+        this.name = b.name;
+        this.author = b.author;
+        this.yearPublished = b.yearPublished;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public short getYearPublished() {
-        return yearPublished;
-    }
-
-    public String getBookInforrmation() {
+    public String getBookInformation() {
         return name+"\t"+author+"\t"+yearPublished+"\n";
+    }
+
+    public boolean isTheSame(String book){
+        if(name.equals(book))
+            return true;
+        else
+            return false;
     }
 
 
