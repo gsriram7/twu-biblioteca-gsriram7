@@ -21,14 +21,6 @@ class LibraryManagementSystem {
         }
     }
 
-/*    public int getNO_OF_BOOKS() {
-        return NO_OF_BOOKS;
-    }*/
-
-/*    public static int getBooksAvailable() {
-        return booksAvailable;
-    }*/
-
     String getWelcomeMessage() {
         return "Hello user welcome to Biblioteca";
     }

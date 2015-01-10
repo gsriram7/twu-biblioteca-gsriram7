@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ExampleTest {
+public class BibliotecaTest {
 
     String[] authors = {"Dennis", "Bjarne", "Gosling", "Matz", "Rossum"};
     String[] names = {"C", "C++", "Java", "Ruby", "Python"};
@@ -34,22 +34,22 @@ public class ExampleTest {
 
     @Test
     public void shouldCheckBookAvailableMessage() {
-        LibraryManagementSystem session1 = new LibraryManagementSystem();
-        assertEquals("Thank you! Enjoy the book", session1.checkOut("C"));
+        LibraryManagementSystem session = new LibraryManagementSystem();
+        assertEquals("Thank you! Enjoy the book", session.checkOut("C"));
     }
 
     @Test
     public void shouldCheckBookUnvailableMessage() {
-        LibraryManagementSystem session1 = new LibraryManagementSystem();
-        assertEquals("Thank you! Enjoy the book", session1.checkOut("C"));
-        assertEquals("That book is not available", session1.checkOut("C"));
+        LibraryManagementSystem session = new LibraryManagementSystem();
+        assertEquals("Thank you! Enjoy the book", session.checkOut("C"));
+        assertEquals("That book is not available", session.checkOut("C"));
     }
 
     @Test
     public void shouldCheckBookCheckInMessage(){
-        LibraryManagementSystem session1 = new LibraryManagementSystem();
-        session1.checkOut("C");
-        assertEquals("Thank you for returning the book",session1.checkIn("C"));
+        LibraryManagementSystem sesion = new LibraryManagementSystem();
+        sesion.checkOut("C");
+        assertEquals("Thank you for returning the book", sesion.checkIn("C"));
     }
 
     @Test
@@ -60,5 +60,16 @@ public class ExampleTest {
     @Test
     public void shouldCheckValidityOfBookDuringCheckOut(){
         assertEquals("That is not a valid book to return",new LibraryManagementSystem().checkIn("Perl"));
+    }
+
+    @Test
+    public void shouldCheckOutFromNoStock(){
+        LibraryManagementSystem session = new LibraryManagementSystem();
+        session.checkOut("C");
+        session.checkOut("C++");
+        session.checkOut("Java");
+        session.checkOut("Python");
+        session.checkOut("Ruby");
+        assertEquals("That book is not available", session.checkOut("Pascal"));
     }
 }
