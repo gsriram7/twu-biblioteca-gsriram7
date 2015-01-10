@@ -21,10 +21,6 @@ class LibraryManagementSystem {
         }
     }
 
-    String getWelcomeMessage() {
-        return "Hello user welcome to Biblioteca";
-    }
-
     public String list() {
         String bookNameList="";
         for(Book names: inStock){
@@ -52,7 +48,7 @@ class LibraryManagementSystem {
     public String checkIn(String book) {
         for(int i=0;i<NO_OF_BOOKS;i++){
             if(inStock[i].isTheSame(book)){
-                if(isBookAvailable[i] == false){
+                if(!isBookAvailable[i]){
                     isBookAvailable[i] = true;
                     booksAvailable++;
                     return "Thank you for returning the book";
@@ -64,4 +60,5 @@ class LibraryManagementSystem {
         }
         return "That is not a valid book to return";
     }
+
 }

@@ -10,7 +10,7 @@ public class BibliotecaApp {
     public static void utility(int option,String bookName){
         switch(option){
             case 1:
-                new LibraryManagementSystem().list();
+                System.out.println(welcomeMessage());
                 break;
             case 2:
                 LibraryManagementSystem library = new LibraryManagementSystem();
@@ -20,7 +20,24 @@ public class BibliotecaApp {
                 LibraryManagementSystem libraryCheckOut = new LibraryManagementSystem();
                 libraryCheckOut.checkOut(bookName);
                 break;
+            case 4:
+                System.out.println(quit());
+                break;
+            default:
+                System.out.println(invalidOptionMessage());
         }
+    }
+
+    static String invalidOptionMessage() {
+        return "Select a valid option!";
+    }
+
+    static String welcomeMessage() {
+        return "Hello user welcome to Biblioteca";
+    }
+
+    static String quit() {
+        return "Thank you for using Biblioteca";
     }
 }
 

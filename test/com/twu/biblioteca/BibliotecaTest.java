@@ -12,10 +12,9 @@ public class BibliotecaTest {
     short[] years = {1972, 1983, 1995, 1995, 1990};
 
     @Test
-    public void welcomeMessageTest() {
-
+    public void shouldCheckWelcomeMessage() {
         String msg = "Hello user welcome to Biblioteca";
-        assertSame(msg, new LibraryManagementSystem().getWelcomeMessage());
+        assertSame(msg, BibliotecaApp.welcomeMessage());
     }
 
     @Test
@@ -46,24 +45,24 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void shouldCheckBookCheckInMessage(){
+    public void shouldCheckBookCheckInMessage() {
         LibraryManagementSystem sesion = new LibraryManagementSystem();
         sesion.checkOut("C");
         assertEquals("Thank you for returning the book", sesion.checkIn("C"));
     }
 
     @Test
-    public void shouldCheckBookAlreadyAvailableMessage(){
-        assertEquals("This book is already available",new LibraryManagementSystem().checkIn("C"));
+    public void shouldCheckBookAlreadyAvailableMessage() {
+        assertEquals("This book is already available", new LibraryManagementSystem().checkIn("C"));
     }
 
     @Test
-    public void shouldCheckValidityOfBookDuringCheckOut(){
-        assertEquals("That is not a valid book to return",new LibraryManagementSystem().checkIn("Perl"));
+    public void shouldCheckValidityOfBookDuringCheckOut() {
+        assertEquals("That is not a valid book to return", new LibraryManagementSystem().checkIn("Perl"));
     }
 
     @Test
-    public void shouldCheckOutFromNoStock(){
+    public void shouldCheckOutFromNoStock() {
         LibraryManagementSystem session = new LibraryManagementSystem();
         session.checkOut("C");
         session.checkOut("C++");
@@ -71,5 +70,15 @@ public class BibliotecaTest {
         session.checkOut("Python");
         session.checkOut("Ruby");
         assertEquals("That book is not available", session.checkOut("Pascal"));
+    }
+
+    @Test
+    public void shouldCheckQuitMessage(){
+        assertEquals("Thank you for using Biblioteca",BibliotecaApp.quit());
+    }
+
+    @Test
+    public void shouldCheckInvalidOptionMessage(){
+        assertEquals("Select a valid option!",BibliotecaApp.invalidOptionMessage());
     }
 }

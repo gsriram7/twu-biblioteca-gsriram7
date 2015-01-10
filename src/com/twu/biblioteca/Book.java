@@ -1,8 +1,5 @@
 package com.twu.biblioteca;
 
-/**
- * Created by selvaram on 1/10/15.
- */
 class Book {
     private String name;
     private String author;
@@ -25,10 +22,7 @@ class Book {
     }
 
     public boolean isTheSame(String book){
-        if(name.equals(book))
-            return true;
-        else
-            return false;
+        return name.equals(book);
     }
 
 
