@@ -23,8 +23,11 @@ class LibraryManagementSystem {
 
     public String list() {
         String bookNameList="";
-        for(Book names: inStock){
-            bookNameList += names.getBookInformation();
+        for (int i = 0; i < inStock.length; i++) {
+            Book names = inStock[i];
+            if(isBookAvailable[i]) {
+                bookNameList += names.getBookInformation();
+            }
         }
         return bookNameList;
     }

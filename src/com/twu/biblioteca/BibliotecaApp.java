@@ -1,30 +1,48 @@
 package com.twu.biblioteca;
 
+import java.util.Scanner;
+
 public class BibliotecaApp {
+
+    LibraryManagementSystem library;
+    BibliotecaApp(){
+        library = new LibraryManagementSystem();
+    }
 
     public static void main(String[] args) {
 
-        System.out.println("Hello, world!");
+        System.out.println(welcomeMessage());
+        BibliotecaApp app = new BibliotecaApp();
+        utility(app.library);
+
     }
 
-    public static void utility(int option,String bookName){
-        switch(option){
-            case 1:
-                System.out.println(welcomeMessage());
-                break;
-            case 2:
-                LibraryManagementSystem library = new LibraryManagementSystem();
-                library.checkOut(bookName);
-                break;
-            case 3:
-                LibraryManagementSystem libraryCheckOut = new LibraryManagementSystem();
-                libraryCheckOut.checkOut(bookName);
-                break;
-            case 4:
-                System.out.println(quit());
-                break;
-            default:
-                System.out.println(invalidOptionMessage());
+    private static void utility(LibraryManagementSystem library) {
+        Scanner kb = new Scanner(System.in);
+        boolean toContinue = true;
+        while(toContinue){
+            System.out.print("1.List Books\n2.Check out\n3.Check in\n4.Quit\nEnter option: ");
+            int option = kb.nextInt();
+            kb.nextLine();
+            switch (option){
+                case 1:
+                    System.out.println(library.list());
+                    break;
+                case 2:
+                    System.out.print("Enter book to checkout: ");
+                    System.out.println(library.checkOut(kb.nextLine()));
+                    break;
+                case 3:
+                    System.out.print("Enter book to check in: ");
+                    System.out.println(library.checkIn(kb.nextLine()));
+                    break;
+                case 4:
+                    System.out.println(quit());
+                    toContinue=false;
+                    break;
+                default:
+                    System.out.println(invalidOptionMessage());
+            }
         }
     }
 
