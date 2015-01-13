@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     LibraryManagement library;
-    BibliotecaApp(){
+
+    BibliotecaApp() {
         library = new LibraryManagement();
     }
 
@@ -20,11 +21,28 @@ public class BibliotecaApp {
     private static void utility(LibraryManagement library) {
         Scanner kb = new Scanner(System.in);
         boolean toContinue = true;
-        while(toContinue){
+        while (toContinue) {
+            if (!library.getIsValidUser()) {
+                System.out.println("0.Login");
+            } else {
+                System.out.println("0.Logout");
+            }
             System.out.print("1.List Books\n2.Check out Book\n3.Check in Book\n4.List Movies\n5.Check out Movie\n6.Check in Movie\n9.Quit\nEnter option: ");
             int option = kb.nextInt();
             kb.nextLine();
-            switch (option){
+            switch (option) {
+                case 0:
+                    if (!library.getIsValidUser()) {
+                        System.out.print("Enter library number: ");
+                        String libraryNumber = kb.nextLine();
+                        System.out.print("Enter password: ");
+                        String password = kb.nextLine();
+                        System.out.println(library.login(libraryNumber, password));
+                    }
+                    else {
+                        System.out.println(library.logout());
+                    }
+                    break;
                 case 1:
                     System.out.println(library.listBooks());
                     break;
@@ -49,7 +67,7 @@ public class BibliotecaApp {
                     break;
                 case 9:
                     System.out.println(quit());
-                    toContinue=false;
+                    toContinue = false;
                     break;
                 default:
                     System.out.println(invalidOptionMessage());
