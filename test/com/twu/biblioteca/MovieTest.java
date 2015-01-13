@@ -117,4 +117,24 @@ public class MovieTest {
         session.logout();
         assertEquals("Please login",session.checkOutMovie("Psycho"));
     }
+
+    @Test
+    public void checkUserWhoCheckedOutMovie() {
+        LibraryManagement session = new LibraryManagement();
+        session.login("111", "aaa");
+        session.checkOutMovie("Inception");
+        session.logout();
+        session.login("777","biblio");
+        assertEquals("Selva", session.moviePossessedBy("Inception"));
+    }
+
+    @Test
+    public void checkUnprivilegedAccessToViewUserPossessionOfMovie() {
+        LibraryManagement session = new LibraryManagement();
+        session.login("111", "aaa");
+        session.checkOutMovie("Inception");
+        session.logout();
+        session.login("222","bbb");
+        assertEquals("You are not privileged", session.moviePossessedBy("Inception"));
+    }
 }

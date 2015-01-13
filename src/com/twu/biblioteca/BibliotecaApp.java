@@ -27,7 +27,7 @@ public class BibliotecaApp {
             } else {
                 System.out.println("0.Logout");
             }
-            System.out.print("1.List Books\n2.Check out Book\n3.Check in Book\n4.List Movies\n5.Check out Movie\n6.Check in Movie\n9.Quit\nEnter option: ");
+            System.out.print("1.List Books\n2.Check out Book\n3.Check in Book\n4.List Movies\n5.Check out Movie\n6.Check in Movie\n7.View book checkout details\n8.View movie checkout details\n9.Quit\nEnter option: ");
             int option = kb.nextInt();
             kb.nextLine();
             switch (option) {
@@ -64,6 +64,14 @@ public class BibliotecaApp {
                 case 6:
                     System.out.print("Enter movie to check in: ");
                     System.out.println(library.checkInMovie(kb.nextLine()));
+                    break;
+                case 7:
+                    System.out.println("Enter book name to view checkout details");
+                    System.out.println(library.bookPossessedBy(kb.nextLine()));
+                    break;
+                case 8:
+                    System.out.println("Enter movie name to view checkout details");
+                    System.out.println(library.moviePossessedBy(kb.nextLine()));
                     break;
                 case 9:
                     System.out.println(quit());

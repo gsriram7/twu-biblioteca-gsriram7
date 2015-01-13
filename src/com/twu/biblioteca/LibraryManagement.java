@@ -10,6 +10,7 @@ public class LibraryManagement {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private ArrayList<User> registeredUsers = new ArrayList<User>();
     private boolean isValidUser;
+    private String currentUser;
 
     public LibraryManagement() {
         for (int i = 0; i < NO_OF_BOOKS; i++) {
@@ -19,60 +20,56 @@ public class LibraryManagement {
             books.add(new Book(names[i], authors[i], years[i], true));
         }
 
-        for(int i=0;i< NO_OF_MOVIES;i++){
-            String[] movieName = {"Inception","Terminator","Psycho"};
-            String[] director = {"Nolan","Cameron","Hitchcock"};
-            String[] yearReleased = {"2008","1995","1963"};
-            String[] rating = {"9","N.A","8"};
-            movies.add(new Movie(movieName[i],director[i],yearReleased[i],rating[i],true));
+        for (int i = 0; i < NO_OF_MOVIES; i++) {
+            String[] movieName = {"Inception", "Terminator", "Psycho"};
+            String[] director = {"Nolan", "Cameron", "Hitchcock"};
+            String[] yearReleased = {"2008", "1995", "1963"};
+            String[] rating = {"9", "N.A", "8"};
+            movies.add(new Movie(movieName[i], director[i], yearReleased[i], rating[i], true));
         }
 
-        for(int i=0;i<NO_OF_USERS;i++){
-            String[] names = {"Selva","Sri","Sridhar"};
-            String[] libraryNumber = {"111","222","333"};
-            String[] passwords = {"aaa","bbb","ccc"};
+        for (int i = 0; i < NO_OF_USERS; i++) {
+            String[] names = {"Selva", "Sri", "Administrator"};
+            String[] libraryNumber = {"111", "222", "777"};
+            String[] passwords = {"aaa", "bbb", "biblio"};
 
-            registeredUsers.add(new User(names[i],libraryNumber[i],passwords[i]));
+            registeredUsers.add(new User(names[i], libraryNumber[i], passwords[i]));
         }
     }
 
-    public String listBooks(){
-       return new Library().list(books);
+    public String listBooks() {
+        return new Library().list(books);
     }
 
-    public String listMovies(){
+    public String listMovies() {
         return new Library().list(movies);
     }
 
-    public String checkOutBook(String bookName){
-        if(isValidUser) {
-            return new Library().checkOut(bookName, books);
-        }
-        else
+    public String checkOutBook(String bookName) {
+        if (isValidUser) {
+            return new Library().checkOut(bookName, books, currentUser);
+        } else
             return "Please login";
     }
 
-    public String checkOutMovie(String movieName){
-        if(isValidUser) {
-            return new Library().checkOut(movieName, movies);
-        }
-        else
+    public String checkOutMovie(String movieName) {
+        if (isValidUser) {
+            return new Library().checkOut(movieName, movies, currentUser);
+        } else
             return "Please login";
     }
 
-    public String checkInBook(String bookName){
-        if(isValidUser) {
+    public String checkInBook(String bookName) {
+        if (isValidUser) {
             return new Library().checkIn(bookName, books);
-        }
-        else
+        } else
             return "Please login";
     }
 
-    public String checkInMovie(String movieName){
-        if(isValidUser) {
+    public String checkInMovie(String movieName) {
+        if (isValidUser) {
             return new Library().checkIn(movieName, movies);
-        }
-        else
+        } else
             return "Please login";
     }
 
@@ -80,21 +77,57 @@ public class LibraryManagement {
         for (User user : registeredUsers) {
             if (user.getLibraryNumber().equals(libraryNumber)) {
                 isValidUser = user.validate(password);
-                if(isValidUser)
-                    return "Welcome "+user.getName();
-                else
+                if (isValidUser) {
+                    currentUser = user.getName();
+                    return "Welcome " + user.getName();
+                } else
                     return "Invalid credentials";
             }
         }
         return "Invalid credentials";
     }
 
-    public String logout(){
+    public String logout() {
         isValidUser = false;
+        currentUser = null;
         return "You are logged out";
     }
 
     public boolean getIsValidUser() {
         return isValidUser;
+    }
+
+    public String bookPossessedBy(String bookName) {
+        if (currentUser.equals("Administrator")) {
+            for (Book book : books) {
+                if (book.isTheSame(bookName)) {
+                    if (book.getUserPossesing() != null) {
+                        return book.getUserPossesing();
+                    } else
+                        return "No user possess the book currently";
+                }
+            }
+            return "Invalid book name";
+        } else if (isValidUser) {
+            return "You are not privileged";
+        } else
+            return "Please login";
+    }
+
+    public String moviePossessedBy(String movieName) {
+        if (currentUser.equals("Administrator")) {
+            for (Movie movie : movies) {
+                if (movie.isTheSame(movieName)) {
+                    if (movie.getUserPossesing() != null) {
+                        return movie.getUserPossesing();
+                    } else
+                        return "No user possess the movie currently";
+                }
+            }
+            return "Invalid movie name";
+        } else if (isValidUser) {
+            return "You are not privileged";
+        } else
+            return "Please login";
     }
 }

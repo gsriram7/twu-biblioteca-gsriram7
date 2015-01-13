@@ -18,10 +18,11 @@ class Book extends Item {
     }
 
     @Override
-    public String checkOut(String bookName) {
-        if (name.equals(bookName)) {
+    public String checkOut(String bookName, String currentUser) {
+        if (isTheSame(bookName)) {
             if (availability) {
                 this.availability = false;
+                super.setUserPossesing(currentUser);
                 return "Thank you! Enjoy the book";
             } else {
                 return "That book is not available";
@@ -32,9 +33,10 @@ class Book extends Item {
 
     @Override
     public String checkIn(String itemName) {
-        if(name.equals(itemName)){
+        if(isTheSame(itemName)){
             if(!availability){
                 this.availability = true;
+                super.setUserPossesing(null);
                 return "Thank you for returning the book";
             }
             else {
@@ -42,6 +44,10 @@ class Book extends Item {
             }
         }
         return null;
+    }
+
+    public boolean isTheSame(String itemName) {
+        return name.equals(itemName);
     }
 
     public String getInformation() {

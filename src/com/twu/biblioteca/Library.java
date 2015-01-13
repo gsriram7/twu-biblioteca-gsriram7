@@ -13,10 +13,10 @@ class Library {
     }
 
 
-    public String checkOut(String itemName, ArrayList<? extends Item> items) {
+    public String checkOut(String itemName, ArrayList<? extends Item> items, String currentUser) {
         String messageToUser;
         for (Item item : items) {
-            messageToUser = item.checkOut(itemName);
+            messageToUser = item.checkOut(itemName, currentUser);
             if (messageToUser != null)
                 return messageToUser;
         }

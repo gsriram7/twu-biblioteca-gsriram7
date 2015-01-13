@@ -4,6 +4,7 @@ public abstract class Item {
     protected String name;
     protected boolean availability;
     protected String yearReleased;
+    protected String userPossesing;
 
     public Item(String name, String yearReleased, boolean availability) {
         this.name = name;
@@ -15,8 +16,15 @@ public abstract class Item {
 
     abstract public String list();
 
-    abstract public String checkOut(String itemName);
+    abstract public String checkOut(String itemName, String currentUser);
 
     abstract public String checkIn(String itemName);
 
+    public void setUserPossesing(String userPossesing) {
+        this.userPossesing = userPossesing;
+    }
+
+    public String getUserPossesing() {
+        return userPossesing;
+    }
 }

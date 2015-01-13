@@ -128,4 +128,23 @@ public class BookTest {
         assertEquals("Please login", session.checkOutBook("C++"));
     }
 
+    @Test
+    public void checkUserWhoCheckedOutBook() {
+        LibraryManagement session = new LibraryManagement();
+        session.login("111", "aaa");
+        session.checkOutBook("C");
+        session.logout();
+        session.login("777","biblio");
+        assertEquals("Selva", session.bookPossessedBy("C"));
+    }
+
+    @Test
+    public void checkUnprivilegedAccessToViewUserPossessionOfMovie() {
+        LibraryManagement session = new LibraryManagement();
+        session.login("111", "aaa");
+        session.checkOutBook("C");
+        session.logout();
+        session.login("222","bbb");
+        assertEquals("You are not privileged", session.bookPossessedBy("C"));
+    }
 }

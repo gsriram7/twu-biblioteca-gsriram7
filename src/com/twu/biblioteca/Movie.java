@@ -20,10 +20,11 @@ public class Movie extends Item {
     }
 
     @Override
-    public String checkOut(String movieName) {
-        if (movieName.equals(name)) {
+    public String checkOut(String movieName, String currentUser) {
+        if (isTheSame(movieName)) {
             if (availability) {
                 this.availability = false;
+                super.setUserPossesing(currentUser);
                 return "Thank you! Enjoy the movie";
             } else {
                 return "That movie is not available";
@@ -34,9 +35,10 @@ public class Movie extends Item {
 
     @Override
     public String checkIn(String itemName) {
-        if(itemName.equals(name)){
+        if(isTheSame(itemName)){
             if(!availability){
                 this.availability = true;
+                super.setUserPossesing(null);
                 return "Thank you for returning the movie";
             }
             else {
@@ -44,6 +46,10 @@ public class Movie extends Item {
             }
         }
         return null;
+    }
+
+    public boolean isTheSame(String itemName) {
+        return itemName.equals(name);
     }
 
     public String getInformation() {
