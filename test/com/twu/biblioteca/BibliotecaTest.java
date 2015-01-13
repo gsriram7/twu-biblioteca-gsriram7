@@ -17,7 +17,7 @@ public class BibliotecaTest {
     public void shouldCheckListBooks() {
         String[] authors = {"Dennis","Bjarne", "Gosling", "Matz", "Rossum"};
         String[] names = {"C","C++", "Java", "Ruby", "Python"};
-        short[] years = {1972,1983, 1995, 1995, 1990};
+        String[] years = {"1972","1983", "1995", "1995", "1990"};
 
         String bookNames = "";
         for (int i = 0; i < names.length; i++) {
@@ -80,5 +80,57 @@ public class BibliotecaTest {
     @Test
     public void shouldCheckInvalidOptionMessage() {
         assertEquals("Select a valid option!", BibliotecaApp.invalidOptionMessage());
+    }
+
+    @Test
+    public void shouldCheckListMovies(){
+        String[] movieName = {"Inception","Terminator","Psycho"};
+        String[] director = {"Nolan","Cameron","Hitchcock"};
+        String[] yearReleased = {"2008","1995","1963"};
+        String[] rating = {"9","N.A","8"};
+
+        String movieInformation = "";
+        for(int i=0;i<movieName.length;i++){
+            movieInformation += movieName[i]+"\t"+director[i]+"\t"+yearReleased[i]+"\t"+rating[i]+"\n";
+        }
+        assertEquals(movieInformation,new Library().listMovies());
+    }
+
+    @Test
+    public void shoudCheckMovieUnavailableMessage(){
+        Library session = new Library();
+        assertEquals("That movie is not available",session.checkOutMovie("Titanic"));
+    }
+
+    @Test
+    public void shouldCheckValidMovieCheckOut(){
+        Library session = new Library();
+        assertEquals("Thank you! Enjoy the movie",session.checkOutMovie("Inception"));
+    }
+
+    @Test
+    public void shouldCheckMovieUnavailability(){
+        Library session = new Library();
+        assertEquals("Thank you! Enjoy the movie",session.checkOutMovie("Inception"));
+        assertEquals("That movie is not available",session.checkOutMovie("Inception"));
+    }
+
+    @Test
+    public void shouldCheckInMovie(){
+        Library session = new Library();
+        session.checkOutMovie("Inception");
+        assertEquals("Thank you for returning the movie", session.checkInMovie("Inception"));
+    }
+
+    @Test
+    public void shouldValidMovieCheckIn(){
+        Library session = new Library();
+        assertEquals("That is not a valid movie to return",session.checkInMovie("Titanic"));
+    }
+
+    @Test
+    public void shouldCheckMultipleCheckIn(){
+        Library session = new Library();
+        assertEquals("This movie is already available",session.checkInMovie("Inception"));
     }
 }

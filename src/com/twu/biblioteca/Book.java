@@ -1,32 +1,28 @@
 package com.twu.biblioteca;
 
-class Book {
-    private String name;
+class Book extends Item{
+
     private String author;
-    private short yearPublished;
-    private boolean isAvailable;
 
-    public Book(String name, String author, short yearPublished, boolean isAvailable) {
-        this.name = name;
+    public Book(String name, String author, String yearPublished, boolean availability) {
+        super(name,yearPublished,availability);
         this.author = author;
-        this.yearPublished = yearPublished;
-        this.isAvailable = isAvailable;
     }
 
-    public void setAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public void setAvailability(boolean isAvailable) {
+        this.availability = isAvailable;
     }
 
-    public String getBookInformation() {
-        return name+"\t"+author+"\t"+yearPublished+"\n";
+    public String getInformation() {
+        return name+"\t"+author+"\t"+yearReleased+"\n";
     }
 
     public boolean isTheSame(String book){
         return name.equals(book);
     }
 
-    public boolean getIsAvailable(){
-        return isAvailable;
+    public boolean isAvailable(){
+        return availability;
     }
 
 }
