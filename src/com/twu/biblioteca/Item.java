@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Item {
+public abstract class Item {
     protected String name;
     protected boolean availability;
     protected String yearReleased;
@@ -11,19 +11,12 @@ public class Item {
         this.yearReleased = yearReleased;
     }
 
-    protected boolean isAvailable(){
-        return true;
-    }
+    abstract public String getInformation();
 
-    public String getInformation() {
-        return null;
-    }
+    abstract public String list();
 
-    public boolean isTheSame(String bookName) {
-        return false;
-    }
+    abstract public String checkOut(String itemName);
 
-    public void setAvailability(boolean b) {
-    }
+    abstract public String checkIn(String itemName);
 
 }

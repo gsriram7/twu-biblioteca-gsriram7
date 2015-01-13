@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    Library library;
+    LibraryManagement library;
     BibliotecaApp(){
-        library = new Library();
+        library = new LibraryManagement();
     }
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class BibliotecaApp {
 
     }
 
-    private static void utility(Library library) {
+    private static void utility(LibraryManagement library) {
         Scanner kb = new Scanner(System.in);
         boolean toContinue = true;
         while(toContinue){
@@ -26,18 +26,18 @@ public class BibliotecaApp {
             kb.nextLine();
             switch (option){
                 case 1:
-                    System.out.println(library.list());
+                    System.out.println(new LibraryManagement().listBooks());
                     break;
                 case 2:
                     System.out.print("Enter book to checkout: ");
-                    System.out.println(library.checkOut(kb.nextLine()));
+                    System.out.println(library.checkOutBook(kb.nextLine()));
                     break;
                 case 3:
                     System.out.print("Enter book to check in: ");
-                    System.out.println(library.checkIn(kb.nextLine()));
+                    System.out.println(library.checkInBook(kb.nextLine()));
                     break;
                 case 4:
-                    System.out.println(library.listMovies());
+                    System.out.println(new LibraryManagement().listMovies());
                     break;
                 case 5:
                     System.out.print("Enter movie to checkout: ");
