@@ -4,17 +4,17 @@ class Book {
     private String name;
     private String author;
     private short yearPublished;
+    private boolean isAvailable;
 
-    public Book(String name, String author, short yearPublished) {
+    public Book(String name, String author, short yearPublished, boolean isAvailable) {
         this.name = name;
         this.author = author;
         this.yearPublished = yearPublished;
+        this.isAvailable = isAvailable;
     }
 
-    public Book(Book b) {
-        this.name = b.name;
-        this.author = b.author;
-        this.yearPublished = b.yearPublished;
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
     public String getBookInformation() {
@@ -25,5 +25,8 @@ class Book {
         return name.equals(book);
     }
 
+    public boolean getIsAvailable(){
+        return isAvailable;
+    }
 
 }

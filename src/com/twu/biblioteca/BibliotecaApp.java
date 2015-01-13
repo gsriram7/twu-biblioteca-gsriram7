@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    LibraryManagementSystem library;
+    Library library;
     BibliotecaApp(){
-        library = new LibraryManagementSystem();
+        library = new Library();
     }
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class BibliotecaApp {
 
     }
 
-    private static void utility(LibraryManagementSystem library) {
+    private static void utility(Library library) {
         Scanner kb = new Scanner(System.in);
         boolean toContinue = true;
         while(toContinue){
