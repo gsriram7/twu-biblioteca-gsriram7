@@ -19,6 +19,22 @@ public class BookTest {
     }
 
     @Test
+    public void shouldCheckBookListAfterCheckOut() {
+        String[] authors = {"Bjarne", "Matz", "Rossum"};
+        String[] names = {"C++", "Ruby", "Python"};
+        String[] years = {"1983","1995", "1990"};
+
+        LibraryManagement libraryManagement = new LibraryManagement();
+        libraryManagement.checkOutBook("C");
+        libraryManagement.checkOutBook("Java");
+        String bookNames = "";
+        for (int i = 0; i < names.length; i++) {
+            bookNames += names[i] + "\t" + authors[i] + "\t" + years[i] + "\n";
+        }
+        assertEquals(bookNames,libraryManagement.listBooks());
+    }
+
+    @Test
     public void shouldDisplayBookUnavailableMessage() {
         assertEquals("Item is not available", new LibraryManagement().checkOutBook("Perl"));
     }

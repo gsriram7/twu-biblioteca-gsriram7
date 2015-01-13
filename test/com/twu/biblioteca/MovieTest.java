@@ -21,6 +21,22 @@ public class MovieTest {
     }
 
     @Test
+    public void shouldCheckMovieListAfterCheckOut(){
+        String[] movieName = {"Inception","Terminator"};
+        String[] director = {"Nolan","Cameron"};
+        String[] yearReleased = {"2008","1995"};
+        String[] rating = {"9","N.A"};
+
+        LibraryManagement libraryManagement = new LibraryManagement();
+        libraryManagement.checkOutMovie("Psycho");
+        String movieInformation = "";
+        for(int i=0;i<movieName.length;i++){
+            movieInformation += movieName[i]+"\t"+director[i]+"\t"+yearReleased[i]+"\t"+rating[i]+"\n";
+        }
+        assertEquals(movieInformation,libraryManagement.listMovies());
+    }
+
+    @Test
     public void shoudCheckMovieUnavailableMessage(){
         LibraryManagement session = new LibraryManagement();
         assertEquals("Item is not available",session.checkOutMovie("Titanic"));

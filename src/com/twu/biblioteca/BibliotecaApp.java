@@ -26,7 +26,7 @@ public class BibliotecaApp {
             kb.nextLine();
             switch (option){
                 case 1:
-                    System.out.println(new LibraryManagement().listBooks());
+                    System.out.println(library.listBooks());
                     break;
                 case 2:
                     System.out.print("Enter book to checkout: ");
@@ -37,7 +37,7 @@ public class BibliotecaApp {
                     System.out.println(library.checkInBook(kb.nextLine()));
                     break;
                 case 4:
-                    System.out.println(new LibraryManagement().listMovies());
+                    System.out.println(library.listMovies());
                     break;
                 case 5:
                     System.out.print("Enter movie to checkout: ");
