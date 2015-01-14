@@ -4,11 +4,15 @@ public class User {
     String name;
     String libraryNumber;
     String password;
+    String email;
+    String phoneNumber;
 
-    public User(String name, String libraryNumber, String password) {
+    public User(String name, String libraryNumber, String password, String email, String phoneNumber) {
         this.name = name;
         this.libraryNumber = libraryNumber;
         this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public boolean validate(String password) {
@@ -21,5 +25,9 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getInformation() {
+        return name+"\t"+phoneNumber+"\t"+email;
     }
 }

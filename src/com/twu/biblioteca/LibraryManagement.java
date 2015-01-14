@@ -32,8 +32,10 @@ public class LibraryManagement {
             String[] names = {"Selva", "Sri", "Administrator"};
             String[] libraryNumber = {"111", "222", "777"};
             String[] passwords = {"aaa", "bbb", "biblio"};
+            String[] emails = {"selvarag@tw.com", "selva@tce.edu", "admin@biblio.com"};
+            String[] phoneNumbers = {"9487506994", "987654321", "9999999999"};
 
-            registeredUsers.add(new User(names[i], libraryNumber[i], passwords[i]));
+            registeredUsers.add(new User(names[i], libraryNumber[i], passwords[i], emails[i], phoneNumbers[i]));
         }
     }
 
@@ -129,5 +131,16 @@ public class LibraryManagement {
             return "You are not privileged";
         } else
             return "Please login";
+    }
+
+    public String viewUserInformation() {
+        if (isValidUser) {
+            for (User user : registeredUsers) {
+                if(user.getName().equals(currentUser)){
+                    return user.getInformation();
+                }
+            }
+        }
+        return "Please login to view information";
     }
 }

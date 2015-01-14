@@ -25,7 +25,7 @@ public class BibliotecaApp {
             if (!library.getIsValidUser()) {
                 System.out.println("0.Login");
             } else {
-                System.out.println("0.Logout");
+                System.out.println("0.Logout\n10.View profile");
             }
             System.out.print("1.List Books\n2.Check out Book\n3.Check in Book\n4.List Movies\n5.Check out Movie\n6.Check in Movie\n7.View book checkout details\n8.View movie checkout details\n9.Quit\nEnter option: ");
             int option = kb.nextInt();
@@ -76,6 +76,9 @@ public class BibliotecaApp {
                 case 9:
                     System.out.println(quit());
                     toContinue = false;
+                    break;
+                case 10:
+                    System.out.println(library.viewUserInformation());
                     break;
                 default:
                     System.out.println(invalidOptionMessage());
