@@ -4,25 +4,25 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    LibraryManagement library;
+    LibraryManagement libraryManagement;
 
     BibliotecaApp() {
-        library = new LibraryManagement();
+        libraryManagement = new LibraryManagement();
     }
 
     public static void main(String[] args) {
 
         System.out.println(welcomeMessage());
         BibliotecaApp app = new BibliotecaApp();
-        utility(app.library);
+        app.utility();
 
     }
 
-    private static void utility(LibraryManagement library) {
+    private void utility() {
         Scanner kb = new Scanner(System.in);
         boolean toContinue = true;
         while (toContinue) {
-            if (!library.getIsValidUser()) {
+            if (!libraryManagement.getIsValidUser()) {
                 System.out.println("0.Login");
             } else {
                 System.out.println("0.Logout\n10.View profile");
@@ -32,53 +32,53 @@ public class BibliotecaApp {
             kb.nextLine();
             switch (option) {
                 case 0:
-                    if (!library.getIsValidUser()) {
-                        System.out.print("Enter library number: ");
+                    if (!libraryManagement.getIsValidUser()) {
+                        System.out.print("Enter libraryManagement number: ");
                         String libraryNumber = kb.nextLine();
                         System.out.print("Enter password: ");
                         String password = kb.nextLine();
-                        System.out.println(library.login(libraryNumber, password));
+                        System.out.println(libraryManagement.login(libraryNumber, password));
                     }
                     else {
-                        System.out.println(library.logout());
+                        System.out.println(libraryManagement.logout());
                     }
                     break;
                 case 1:
-                    System.out.println(library.listBooks());
+                    System.out.println(libraryManagement.listBooks());
                     break;
                 case 2:
                     System.out.print("Enter book to checkout: ");
-                    System.out.println(library.checkOutBook(kb.nextLine()));
+                    System.out.println(libraryManagement.checkOutBook(kb.nextLine()));
                     break;
                 case 3:
                     System.out.print("Enter book to check in: ");
-                    System.out.println(library.checkInBook(kb.nextLine()));
+                    System.out.println(libraryManagement.checkInBook(kb.nextLine()));
                     break;
                 case 4:
-                    System.out.println(library.listMovies());
+                    System.out.println(libraryManagement.listMovies());
                     break;
                 case 5:
                     System.out.print("Enter movie to checkout: ");
-                    System.out.println(library.checkOutMovie(kb.nextLine()));
+                    System.out.println(libraryManagement.checkOutMovie(kb.nextLine()));
                     break;
                 case 6:
                     System.out.print("Enter movie to check in: ");
-                    System.out.println(library.checkInMovie(kb.nextLine()));
+                    System.out.println(libraryManagement.checkInMovie(kb.nextLine()));
                     break;
                 case 7:
                     System.out.println("Enter book name to view checkout details");
-                    System.out.println(library.bookPossessedBy(kb.nextLine()));
+                    System.out.println(libraryManagement.bookCheckedOutBy(kb.nextLine()));
                     break;
                 case 8:
                     System.out.println("Enter movie name to view checkout details");
-                    System.out.println(library.moviePossessedBy(kb.nextLine()));
+                    System.out.println(libraryManagement.movieCheckedOutBy(kb.nextLine()));
                     break;
                 case 9:
                     System.out.println(quit());
                     toContinue = false;
                     break;
                 case 10:
-                    System.out.println(library.viewUserInformation());
+                    System.out.println(libraryManagement.viewUserInformation());
                     break;
                 default:
                     System.out.println(invalidOptionMessage());

@@ -27,4 +27,6 @@ public abstract class Item {
     public String getUserPossesing() {
         return userPossesing;
     }
+
+    public abstract boolean isTheSame(String itemName);
 }

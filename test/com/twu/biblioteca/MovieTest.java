@@ -125,7 +125,7 @@ public class MovieTest {
         session.checkOutMovie("Inception");
         session.logout();
         session.login("777","biblio");
-        assertEquals("Selva", session.moviePossessedBy("Inception"));
+        assertEquals("Selva", session.movieCheckedOutBy("Inception"));
     }
 
     @Test
@@ -135,6 +135,6 @@ public class MovieTest {
         session.checkOutMovie("Inception");
         session.logout();
         session.login("222","bbb");
-        assertEquals("You are not privileged", session.moviePossessedBy("Inception"));
+        assertEquals("You are not privileged", session.movieCheckedOutBy("Inception"));
     }
 }

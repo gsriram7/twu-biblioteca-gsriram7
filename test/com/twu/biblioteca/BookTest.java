@@ -135,7 +135,7 @@ public class BookTest {
         session.checkOutBook("C");
         session.logout();
         session.login("777","biblio");
-        assertEquals("Selva", session.bookPossessedBy("C"));
+        assertEquals("Selva", session.bookCheckedOutBy("C"));
     }
 
     @Test
@@ -145,6 +145,6 @@ public class BookTest {
         session.checkOutBook("C");
         session.logout();
         session.login("222","bbb");
-        assertEquals("You are not privileged", session.bookPossessedBy("C"));
+        assertEquals("You are not privileged", session.bookCheckedOutBy("C"));
     }
 }

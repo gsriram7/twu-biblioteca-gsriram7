@@ -3,9 +3,6 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class LibraryManagement {
-    private static final int NO_OF_BOOKS = 5;
-    private static final int NO_OF_MOVIES = 3;
-    private static final int NO_OF_USERS = 3;
     private ArrayList<Book> books = new ArrayList<Book>();
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private ArrayList<User> registeredUsers = new ArrayList<User>();
@@ -13,30 +10,19 @@ public class LibraryManagement {
     private String currentUser;
 
     public LibraryManagement() {
-        for (int i = 0; i < NO_OF_BOOKS; i++) {
-            String[] years = {"1972", "1983", "1995", "1995", "1990"};
-            String[] authors = {"Dennis", "Bjarne", "Gosling", "Matz", "Rossum"};
-            String[] names = {"C", "C++", "Java", "Ruby", "Python"};
-            books.add(new Book(names[i], authors[i], years[i], true));
-        }
+        books.add(new Book("C","Dennis","1972",true));
+        books.add(new Book("C++","Bjarne","1983",true));
+        books.add(new Book("Java","Gosling","1995",true));
+        books.add(new Book("Ruby","Matz","1995",true));
+        books.add(new Book("Python","Rossum","1990",true));
 
-        for (int i = 0; i < NO_OF_MOVIES; i++) {
-            String[] movieName = {"Inception", "Terminator", "Psycho"};
-            String[] director = {"Nolan", "Cameron", "Hitchcock"};
-            String[] yearReleased = {"2008", "1995", "1963"};
-            String[] rating = {"9", "N.A", "8"};
-            movies.add(new Movie(movieName[i], director[i], yearReleased[i], rating[i], true));
-        }
+        movies.add(new Movie("Inception","Nolan","2008","9",true));
+        movies.add(new Movie("Terminator","Cameron","1995","N.A",true));
+        movies.add(new Movie("Psycho","Hitchcock","1963","8",true));
 
-        for (int i = 0; i < NO_OF_USERS; i++) {
-            String[] names = {"Selva", "Sri", "Administrator"};
-            String[] libraryNumber = {"111", "222", "777"};
-            String[] passwords = {"aaa", "bbb", "biblio"};
-            String[] emails = {"selvarag@tw.com", "selva@tce.edu", "admin@biblio.com"};
-            String[] phoneNumbers = {"9487506994", "987654321", "9999999999"};
-
-            registeredUsers.add(new User(names[i], libraryNumber[i], passwords[i], emails[i], phoneNumbers[i]));
-        }
+        registeredUsers.add(new User("Selva","111","aaa","selvarag@tw.com","9487506994"));
+        registeredUsers.add(new User("Sri","222","bbb","selvamailz@tce.edu","987654321"));
+        registeredUsers.add(new User("Administrator","777","biblio","admin@biblio.com","9999999999"));
     }
 
     public String listBooks() {
@@ -99,7 +85,7 @@ public class LibraryManagement {
         return isValidUser;
     }
 
-    public String bookPossessedBy(String bookName) {
+    public String bookCheckedOutBy(String bookName) {
         if (currentUser.equals("Administrator")) {
             for (Book book : books) {
                 if (book.isTheSame(bookName)) {
@@ -116,7 +102,7 @@ public class LibraryManagement {
             return "Please login";
     }
 
-    public String moviePossessedBy(String movieName) {
+    public String movieCheckedOutBy(String movieName) {
         if (currentUser.equals("Administrator")) {
             for (Movie movie : movies) {
                 if (movie.isTheSame(movieName)) {
